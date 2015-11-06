@@ -55,8 +55,8 @@ void loop() {
   // analogWrite(barGraph, cloudBitsValue); // REMOVED BECAUSE THIS CONFUSES THINGS.
   
   // CHECK TO SEE IF CLOUDBITS IS GETTING ANY "PINGS" from IFTTT.COM
-  if (cloudBitsValue >950) countButtonState = HIGH; //JB
-  else if (cloudBitsValue <=950) countButtonState = LOW; //JB
+  if ((cloudBitsValue >950) || (digitalRead (countButton))) countButtonState = HIGH; //JB
+  else if (cloudBitsValue <=950)  countButtonState = LOW; //JB
 
   //ADD BUTTON HIGH CODE
   // RESET BUTTON CODE - SETS EVERYTHING TO ZERO WHEN RESET BUTTON IS PRESSED
