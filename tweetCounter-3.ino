@@ -1,11 +1,8 @@
 /*
-CloudBits Arduino Counter 
-Modified from http://littlebits.cc/projects/the-littlebits-count
-initially by Richard Born
+littleBits Arduino Counter
+http://littlebits.cc/projects/the-littlebits-count
+Richard Born
 May 7, 2014
-
-Rewritten by Jaki Levy
-November 2015
 */
 
 //SETUP THE INPUTS AND OUTPUT VARIABLES
@@ -52,9 +49,9 @@ void loop() {
   // analogWrite(barGraph, cloudBitsValue); // REMOVED BECAUSE THIS CONFUSES THINGS.
   
   // CHECK TO SEE IF CLOUDBITS IS GETTING ANY "PINGS" from IFTTT.COM
-  if (cloudBitsValue >950) countButtonState = HIGH; //JB
-  else if (cloudBitsValue <=950) countButtonState = LOW; //JB
-
+  if ((cloudBitsValue >950) || (digitalRead (countButton))) countButtonState = HIGH; //JB
+  else if (cloudBitsValue <=950)  countButtonState = LOW; //JB
+  
   //ADD BUTTON HIGH CODE
   // RESET BUTTON CODE - SETS EVERYTHING TO ZERO WHEN RESET BUTTON IS PRESSED
   if (resetButtonState == HIGH) {
@@ -96,14 +93,14 @@ void loop() {
    * 1023 = The 5th Bargraph Light (full on Mode)
    */
   if (tweetCounter == 1) {
-    analogWrite(barGraph, 611); // Green 1st Spot
+    analogWrite(barGraph, 815); // Green 1st Spot
   }
   if (tweetCounter == 2) {
-    analogWrite(barGraph, 203); // GREEN 2nd Spot
+    analogWrite(barGraph, 407); // GREEN 3rd Spot
   }
   if (tweetCounter == 3) {
-    analogWrite(barGraph, 1023); // GREEN 3rd Spot
-    digitalWrite(goGordonGoPin, HIGH); // Hit The WireLess Transmitter
+    analogWrite(barGraph, 1023); // All Lights
+    digitalWrite(goGordonGoPin, HIGH); // Hit The WireLess Transmitter on D1
   }
   
   
